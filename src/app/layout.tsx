@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Instrument_Serif } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
 /**
@@ -8,16 +8,12 @@ import './globals.css';
  * marketing edits don't queue on app builds and vice versa.
  */
 
-const serif = Instrument_Serif({
-    subsets: ['latin'],
-    weight: ['400'],
+// F37 Zagma Serif Book — the original Webflow brand serif, self-hosted
+// from /public/fonts. Loaded as a CSS variable so the rest of the
+// stylesheet can reference it cleanly.
+const serif = localFont({
+    src: '../../public/fonts/F37ZagmaSerif-Book.ttf',
     variable: '--font-serif',
-    display: 'swap',
-});
-
-const sans = Inter({
-    subsets: ['latin'],
-    variable: '--font-sans',
     display: 'swap',
 });
 
@@ -44,7 +40,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+        <html lang="en" className={serif.variable}>
             <body>{children}</body>
         </html>
     );
