@@ -67,8 +67,8 @@ function Nav({ loginHref, signupHref }: { loginHref: string; signupHref: string 
                 <nav className="m-nav-links">
                     <a href="#loop">How it works</a>
                     <a href="#features">Features</a>
-                    <a href="#customers">Customers</a>
-                    <a href="#security">Security</a>
+                    <Link href="/pricing">Pricing</Link>
+                    <Link href="/blog">Blog</Link>
                 </nav>
                 <div className="m-nav-cta">
                     <Link href={loginHref} className="m-btn-ghost">Login</Link>
@@ -750,11 +750,12 @@ function Footer({ signupHref }: { signupHref: string }) {
                         <div className="m-footer-h">Product</div>
                         <a href="#loop">How it works</a>
                         <a href="#features">Features</a>
-                        <a href="#security">Security</a>
+                        <Link href="/pricing">Pricing</Link>
                     </div>
                     <div>
-                        <div className="m-footer-h">Customers</div>
-                        <a href="#customers">Stories</a>
+                        <div className="m-footer-h">Resources</div>
+                        <Link href="/blog">Blog</Link>
+                        <a href="#customers">Customer stories</a>
                         <a href="mailto:adam@gensend.ai">Talk to us</a>
                     </div>
                     <div>
