@@ -65,10 +65,10 @@ function PricingHero() {
     return (
         <section className="m-hero" style={{ paddingTop: 80, paddingBottom: 24 }}>
             <div className="m-hero-inner">
-                <span className="m-pill"><span className="dot" /> Simple, usage-based</span>
+                <span className="m-pill"><span className="dot" /> Per workspace, unlimited workspaces</span>
                 <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)' }}>Pricing</h1>
                 <p className="m-hero-sub">
-                    One plan replaces the whole cold-email stack. No per-seat lock-in. No annual contract. Cancel anytime.
+                    One plan per workspace. Run unlimited workspaces under one account — one for your startup, one for your agency client, one for a side project. Each pays separately.
                 </p>
             </div>
         </section>
@@ -88,52 +88,36 @@ type Tier = {
 
 const TIERS: Tier[] = [
     {
-        name: 'Starter',
-        price: '$49',
-        period: '/mo',
-        blurb: 'For founders running outbound themselves.',
-        cta: 'Start free trial',
+        name: 'Free',
+        price: '$0',
+        period: '/mo per workspace',
+        blurb: 'Kick the tires. One workspace or many — all the same price.',
+        cta: 'Start free',
         features: [
-            '1 sending mailbox',
-            '500 verified emails / mo',
+            '1 campaign at a time',
+            '5 emails / day',
             'All lead sources (Apollo, YC, agentic)',
             'Agentic copy + reply triage',
-            'Customer-list grounding',
-            'Email + chat support',
+            'Connect Google or Outlook',
+            'Unlimited workspaces per account',
         ],
     },
     {
-        name: 'Growth',
+        name: 'Pro',
         badge: 'Most popular',
-        price: '$149',
-        period: '/mo',
-        blurb: 'For founder-led startups scaling outbound.',
-        cta: 'Start free trial',
+        price: '$75',
+        period: '/mo per workspace',
+        blurb: 'For real outbound. Upgrade per workspace as each one matures.',
+        cta: 'Upgrade workspace',
         highlighted: true,
         features: [
-            '5 sending mailboxes',
-            '2,500 verified emails / mo',
-            'Everything in Starter, plus:',
+            'Unlimited campaigns',
+            'Unlimited daily sends (per-mailbox caps apply)',
+            'Everything in Free, plus:',
             'Multi-mailbox rotation + warmup',
             'Deliverability self-healing',
             'Connection column (named name-drops)',
             'Priority support',
-        ],
-    },
-    {
-        name: 'Scale',
-        price: '$399',
-        period: '/mo',
-        blurb: 'For sales teams running multiple plays.',
-        cta: 'Start free trial',
-        features: [
-            '20 sending mailboxes',
-            '15,000 verified emails / mo',
-            'Everything in Growth, plus:',
-            'Custom cohort scrapers on request',
-            'Workspace handoff (multi-operator)',
-            'SOC 2 docs + DPA',
-            'Dedicated success manager',
         ],
     },
 ];
@@ -174,10 +158,10 @@ function PricingTiers({ signupHref }: { signupHref: string }) {
             </div>
             <div className="m-pricing-enterprise">
                 <div>
-                    <h3>Enterprise</h3>
-                    <p>Unlimited mailboxes, custom volume, on-call deliverability ops, custom data sources. We tailor the contract.</p>
+                    <h3>Agency / Enterprise</h3>
+                    <p>Running cold email for clients? Unlimited workspaces under one account at Pro — one per client, billed separately. Volume discounts at 10+ Pro workspaces. We&apos;ll tailor the contract.</p>
                 </div>
-                <a href="mailto:adam@gensend.ai?subject=Enterprise%20plan" className="m-btn-primary m-btn-lg">Talk to us</a>
+                <a href="mailto:adam@gensend.ai?subject=Agency%20plan" className="m-btn-primary m-btn-lg">Talk to us</a>
             </div>
         </section>
     );
@@ -239,24 +223,24 @@ function CompareTable() {
 function FAQ() {
     const items = [
         {
-            q: 'How do credits / sending volume work?',
-            a: 'Each verified email send counts as one credit. Bounces, suppressions, and pre-send verifier rejections do not count. Unused credits do not roll over.',
+            q: 'How does per-workspace pricing work?',
+            a: 'A workspace is one outreach context — one business, one ICP, one set of mailboxes. You can run as many workspaces as you want under one account. Each one is billed separately at Free or Pro. Run a workspace for your startup on Free while you experiment, upgrade your agency client workspaces to Pro.',
         },
         {
             q: 'Can I use my own mailboxes?',
-            a: 'Yes. Connect Google Workspace or Outlook via OAuth. We never see your password and you can disconnect any time. Your domain reputation stays yours.',
+            a: 'Yes. Connect Google Workspace or Outlook via OAuth, per workspace. We never see your password and you can disconnect any time. Your domain reputation stays yours.',
         },
         {
             q: 'What happens if I bounce?',
             a: 'We auto-pause mailboxes that hit a 3% bounce rate and route sends to healthier ones while the affected mailbox recovers. The send queue is preserved.',
         },
         {
-            q: 'Is there a free trial?',
-            a: 'Yes — 14 days of Starter, no credit card required. You keep any leads, emails, and drafts produced during the trial when you upgrade.',
+            q: 'Is there a trial on Pro?',
+            a: 'Free is genuinely free — 1 campaign and 5 sends a day, every workspace, forever. Upgrade a workspace to Pro when you want unlimited sends. No card required to start.',
         },
         {
             q: 'Do you offer annual discounts?',
-            a: 'Yes, 2 months free on annual prepay. Reach out to adam@gensend.ai before signing up and we will switch the workspace to annual billing.',
+            a: 'Yes, 2 months free on annual prepay per workspace. Reach out to adam@gensend.ai and we will switch the workspace to annual billing.',
         },
         {
             q: 'Do I own the leads?',
