@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 
 /**
  * Landing page — Gensend's story. Heavy emphasis on showing the
@@ -402,7 +402,7 @@ function TheLoop({ signupHref }: { signupHref: string }) {
         badge: string;
         title: string;
         body: string;
-        visual: JSX.Element;
+        visual: ReactNode;
     };
     const stages: Stage[] = [
         {
