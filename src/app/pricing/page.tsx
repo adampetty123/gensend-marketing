@@ -105,12 +105,13 @@ const TIERS: Tier[] = [
     {
         name: 'Pro',
         badge: 'Most popular',
-        price: '$75',
+        price: '$20',
         period: '/mo per workspace',
-        blurb: 'For real outbound. Upgrade per workspace as each one matures.',
+        blurb: 'Real outbound, fully managed sending stack. Covers domains + Workspace mailboxes.',
         cta: 'Upgrade workspace',
         highlighted: true,
         features: [
+            'Auto-provisioned sending infrastructure (domains + Google Workspace mailboxes)',
             'Unlimited campaigns',
             'Unlimited daily sends (per-mailbox caps apply)',
             'Everything in Free, plus:',
