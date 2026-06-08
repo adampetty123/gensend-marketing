@@ -18,6 +18,10 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.01em;
+    /* Blog images break out past the text column via negative margins.
+       Without this, the 100vw breakout would create a horizontal
+       scrollbar on narrow viewports. */
+    overflow-x: hidden;
 }
 
 * { box-sizing: border-box; }
@@ -1450,6 +1454,9 @@ a { color: inherit; text-decoration: none; }
     max-width: 720px;
     margin: 60px auto 0;
     padding: 0 24px;
+    /* Allow the hero + body images to break out wider than the
+       text column without bumping the page's horizontal overflow. */
+    overflow: visible;
 }
 .m-post-head {
     display: flex;
@@ -1493,13 +1500,25 @@ a { color: inherit; text-decoration: none; }
     max-width: 600px;
 }
 
+/* Hero image breaks out wider than the 720px text column for a
+   Late-Checkout-style "full image, narrow text" feel. The negative
+   margin trick lets us escape the parent without absolute positioning. */
 .m-post-hero {
-    margin-top: 14px;
+    margin-top: 24px;
+    width: min(100vw, 1100px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.m-post-hero img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
+    display: block;
 }
 
 .m-post-body {
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 18px;
+    line-height: 1.75;
     color: #1a1a1a;
 }
 .m-post-body p {
@@ -1561,6 +1580,63 @@ a { color: inherit; text-decoration: none; }
     padding: 4px 0 4px 18px;
     margin: 0 0 22px;
     color: rgba(0, 0, 0, 0.7);
+    font-style: italic;
+}
+
+/* === Image breakout — Late-Checkout style ===
+   Images break out of the 720px column to ~1100px so they command
+   visual real estate while text stays in the narrow reading column.
+   Captions (an italic-only paragraph immediately after) get centered
+   small grey treatment. */
+.m-post-body img {
+    display: block;
+    width: min(100vw, 1100px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 48px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    height: auto;
+}
+/* Markdown renderers wrap a lone image in <p>. Strip the p's margin
+   + padding so the image's negative-margin breakout isn't pushed
+   inward by the column constraints. */
+.m-post-body p:has(> img:only-child) {
+    margin: 0;
+    padding: 0;
+}
+/* Italic-only paragraph directly after an image-only paragraph is
+   treated as a caption: smaller, lighter, centered under the image. */
+.m-post-body p:has(> img:only-child) + p {
+    margin: 0 0 40px;
+    text-align: center;
+}
+.m-post-body p:has(> img:only-child) + p > em:only-child {
+    display: block;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+}
+/* If the markdown uses <figure>/<figcaption> instead — same look. */
+.m-post-body figure {
+    width: min(100vw, 1100px);
+    margin: 48px 0 40px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.m-post-body figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 0;
+    transform: none;
+    display: block;
+}
+.m-post-body figure figcaption {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 14px;
     font-style: italic;
 }
 
