@@ -1388,9 +1388,13 @@ a { color: inherit; text-decoration: none; }
 }
 .m-blog-card-hero {
     aspect-ratio: 3 / 2;
-    background: #f5f5f7;
+    background: #fff;
     overflow: hidden;
     display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+.m-blog-card-hero img {
+    object-fit: contain !important;
 }
 .m-blog-card-hero img {
     width: 100%;
@@ -1523,31 +1527,29 @@ a { color: inherit; text-decoration: none; }
     white-space: pre-line;
 }
 
-/* Cinematic full-bleed hero — 1512:500 desktop, 3:2 mobile.
-   Late Checkout uses this aspect to give every post a tight
-   widescreen frame above the prose. */
+/* Editorial hero — preserves the full ink-wash sketch on a clean
+   white card. 3:2 aspect, max ~1100px wide, no harsh cropping. */
 .m-post-hero {
-    width: 100vw;
-    max-width: 1512px;
+    width: 100%;
+    max-width: 1100px;
     margin: 56px auto 0;
-    aspect-ratio: 1512 / 500;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
-    border-radius: 14px;
-    /* Re-center against viewport edge when the article column shifts. */
-    margin-left: 50%;
-    transform: translateX(-50%);
-    background: #f5f5f7;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 .m-post-hero img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* contain (not cover) keeps the figure whole — sketches have
+       white space we don't want to crop away. */
+    object-fit: contain;
 }
 @media (max-width: 880px) {
     .m-post-hero {
-        aspect-ratio: 3 / 2;
-        border-radius: 8px;
+        border-radius: 10px;
         margin-top: 36px;
     }
     .m-post-byline-info { font-size: 14px; }

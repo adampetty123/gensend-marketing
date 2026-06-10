@@ -78,11 +78,11 @@ export default async function BlogPostPage({ params }: Props) {
                         <Image
                             src={post.hero}
                             alt={post.title}
-                            width={1512}
-                            height={500}
+                            width={1100}
+                            height={733}
                             priority
-                            sizes="100vw"
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            sizes="(max-width: 1140px) 100vw, 1100px"
+                            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                         />
                     </div>
                 )}
@@ -118,9 +118,9 @@ export default async function BlogPostPage({ params }: Props) {
                                             src={p.hero}
                                             alt={p.title}
                                             width={640}
-                                            height={360}
+                                            height={427}
                                             sizes="(max-width: 880px) 100vw, 33vw"
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                         />
                                     </div>
                                 )}
