@@ -3,6 +3,7 @@ title: "What 'agentic' cold email actually does."
 slug: what-agentic-cold-email-actually-does
 date: 2026-06-10
 excerpt: "Every outbound tool put 'AI' in their hero this year. Most of them just wrapped GPT-4 around a template editor. Agentic means something specific. Here's what."
+hero: "/blog/what-agentic-cold-email-actually-does.png"
 author: "Adam Petty"
 tags: ["agentic", "ai", "cold-email"]
 reading_minutes: 5

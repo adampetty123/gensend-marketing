@@ -3,6 +3,7 @@ title: "Your cold emails are going to spam. Here's exactly why."
 slug: why-your-cold-emails-go-to-spam
 date: 2026-06-10
 excerpt: "Most 'deliverability tips' threads are noise. The real reasons your mail lands in spam are technical, boring, and fixable in an afternoon."
+hero: "/blog/why-your-cold-emails-go-to-spam.png"
 author: "Adam Petty"
 tags: ["deliverability", "cold-email", "spf-dkim-dmarc"]
 reading_minutes: 6

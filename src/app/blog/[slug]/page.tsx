@@ -7,6 +7,13 @@ import { getPost, listPosts, relatedPosts } from '@/lib/blog';
 /**
  * One blog post. Statically generated at build time.
  * Drop a new .md file in /content/blog and Vercel rebuild picks it up.
+ *
+ * Layout follows Late Checkout's blog post pattern:
+ *   - centered byline block: round author avatar + name + date
+ *   - big centered serif title (clamps 38-56px)
+ *   - centered grey excerpt
+ *   - full-bleed cinematic hero (16:5.3 desktop, 3:2 mobile)
+ *   - prose body in a narrower reading column below
  */
 
 type Props = { params: Promise<{ slug: string }> };
@@ -43,33 +50,42 @@ export default async function BlogPostPage({ params }: Props) {
     const post = await getPost(slug);
     if (!post) notFound();
     const related = relatedPosts(slug, 3);
+    const initials = initialsOf(post.author || 'Gensend');
     return (
         <>
             <BlogNav />
 
             <article className="m-post">
                 <header className="m-post-head">
-                    <Link href="/blog" className="m-post-back">← All posts</Link>
-                    <div className="m-post-meta">
-                        <span>{formatDate(post.date)}</span>
-                        {post.reading_minutes && <span>· {post.reading_minutes} min read</span>}
-                        {post.author && <span>· {post.author}</span>}
+                    <div className="m-post-byline">
+                        <div className="m-post-avatar" aria-label={post.author || 'Gensend'}>
+                            {initials}
+                        </div>
+                        <div className="m-post-byline-info">
+                            <div className="m-post-author">{post.author || 'Gensend'}</div>
+                            <time className="m-post-date" dateTime={post.date}>
+                                {formatDate(post.date)}
+                                {post.reading_minutes ? ` · ${post.reading_minutes} min read` : ''}
+                            </time>
+                        </div>
                     </div>
                     <h1 className="m-post-title">{post.title}</h1>
                     {post.excerpt && <p className="m-post-excerpt">{post.excerpt}</p>}
-                    {post.hero && (
-                        <div className="m-post-hero">
-                            <Image
-                                src={post.hero}
-                                alt={post.title}
-                                width={1200}
-                                height={630}
-                                priority
-                                style={{ width: '100%', height: 'auto', borderRadius: 14 }}
-                            />
-                        </div>
-                    )}
                 </header>
+
+                {post.hero && (
+                    <div className="m-post-hero">
+                        <Image
+                            src={post.hero}
+                            alt={post.title}
+                            width={1512}
+                            height={500}
+                            priority
+                            sizes="100vw"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                    </div>
+                )}
 
                 <div
                     className="m-post-body"
@@ -83,6 +99,8 @@ export default async function BlogPostPage({ params }: Props) {
                         ))}
                     </div>
                 )}
+
+                <Link href="/blog" className="m-post-back-bottom">← All posts</Link>
             </article>
 
             {related.length > 0 && (
@@ -94,6 +112,18 @@ export default async function BlogPostPage({ params }: Props) {
                     <div className="m-blog-grid">
                         {related.map((p) => (
                             <Link key={p.slug} href={`/blog/${p.slug}`} className="m-blog-card">
+                                {p.hero && (
+                                    <div className="m-blog-card-hero">
+                                        <Image
+                                            src={p.hero}
+                                            alt={p.title}
+                                            width={640}
+                                            height={360}
+                                            sizes="(max-width: 880px) 100vw, 33vw"
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                )}
                                 <div className="m-blog-card-body">
                                     <div className="m-blog-card-meta">
                                         <span>{formatDate(p.date)}</span>
@@ -155,8 +185,15 @@ function BlogFooter() {
 
 function formatDate(iso: string): string {
     try {
-        return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     } catch {
         return iso;
     }
+}
+
+function initialsOf(name: string): string {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 0 || parts[0] === '') return 'G';
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }

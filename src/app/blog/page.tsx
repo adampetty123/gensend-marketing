@@ -42,8 +42,9 @@ export default function BlogIndexPage() {
                                             src={p.hero}
                                             alt={p.title}
                                             width={640}
-                                            height={360}
-                                            style={{ width: '100%', height: 'auto' }}
+                                            height={427}
+                                            sizes="(max-width: 880px) 100vw, 33vw"
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                         />
                                     </div>
                                 )}

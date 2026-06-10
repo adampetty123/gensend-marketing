@@ -3,6 +3,7 @@ title: "Instantly is a great sequencer. That's the problem."
 slug: instantly-is-a-great-sequencer
 date: 2026-06-10
 excerpt: "The category-defining cold email tool solves the 10% of the problem that's easy. The 90% that's actually hard sits on top of every founder running cold outbound today."
+hero: "/blog/instantly-is-a-great-sequencer.png"
 author: "Adam Petty"
 tags: ["cold-email", "sequencer", "competitive"]
 reading_minutes: 5

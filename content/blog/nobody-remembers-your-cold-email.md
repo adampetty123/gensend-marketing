@@ -3,6 +3,7 @@ title: "Nobody remembers your cold email."
 slug: nobody-remembers-your-cold-email
 date: 2026-06-09
 excerpt: "Every B2B inbox in 2026 looks the same — fifty AI-written sequences competing to introduce themselves. The volume problem isn't volume. It's that none of it lands."
+hero: "/blog/nobody-remembers-your-cold-email.png"
 author: "Adam Petty"
 tags: ["cold-email", "voice", "ai"]
 reading_minutes: 5

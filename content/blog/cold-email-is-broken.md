@@ -3,6 +3,7 @@ title: "Cold email is broken. Here's the fix."
 slug: cold-email-is-broken
 date: 2026-06-06
 excerpt: "Every cold email tool stops at 'send and pray.' That's the wrong layer. The real problem is everything that happens before the send and after the reply."
+hero: "/blog/cold-email-is-broken.png"
 author: "Adam Petty"
 tags: ["cold-email", "deliverability", "agentic"]
 reading_minutes: 4
