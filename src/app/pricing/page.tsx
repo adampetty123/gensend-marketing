@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import AnimatedFaq from '../components/AnimatedFaq';
 
 /**
  * Standalone pricing page. Three tiers + enterprise inquiry. Lifted out
@@ -32,7 +33,7 @@ export default function PricingPage() {
             <PricingHero />
             <PricingTiers signupHref={signupHref} />
             <CompareTable />
-            <FAQ />
+            <AnimatedFaq />
             <CtaBanner signupHref={signupHref} />
             <Footer signupHref={signupHref} />
         </>
@@ -216,51 +217,6 @@ function CompareTable() {
                         ))}
                     </tbody>
                 </table>
-            </div>
-        </section>
-    );
-}
-
-function FAQ() {
-    const items = [
-        {
-            q: 'How does per-workspace pricing work?',
-            a: 'A workspace is one outreach context — one business, one ICP, one set of mailboxes. You can run as many workspaces as you want under one account. Each one is billed separately at Free or Pro. Run a workspace for your startup on Free while you experiment, upgrade your agency client workspaces to Pro.',
-        },
-        {
-            q: 'Can I use my own mailboxes?',
-            a: 'Yes. Connect Google Workspace or Outlook via OAuth, per workspace. We never see your password and you can disconnect any time. Your domain reputation stays yours.',
-        },
-        {
-            q: 'What happens if I bounce?',
-            a: 'We auto-pause mailboxes that hit a 3% bounce rate and route sends to healthier ones while the affected mailbox recovers. The send queue is preserved.',
-        },
-        {
-            q: 'Is there a trial on Pro?',
-            a: 'Free is genuinely free — 1 campaign and 5 sends a day, every workspace, forever. Upgrade a workspace to Pro when you want unlimited sends. No card required to start.',
-        },
-        {
-            q: 'Do you offer annual discounts?',
-            a: 'Yes, 2 months free on annual prepay per workspace. Reach out to adam@gensend.ai and we will switch the workspace to annual billing.',
-        },
-        {
-            q: 'Do I own the leads?',
-            a: 'Always. Export to CSV any time. Cancel and the data leaves with you — we do not lock you in.',
-        },
-    ];
-    return (
-        <section className="m-section">
-            <div className="m-section-head">
-                <span className="m-section-num">[02]</span>
-                <h2>Common questions.</h2>
-            </div>
-            <div className="m-faq">
-                {items.map((it) => (
-                    <details key={it.q} className="m-faq-item">
-                        <summary>{it.q}</summary>
-                        <p>{it.a}</p>
-                    </details>
-                ))}
             </div>
         </section>
     );

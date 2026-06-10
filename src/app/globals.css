@@ -1702,3 +1702,174 @@ a { color: inherit; text-decoration: none; }
     gap: 8px;
     flex-wrap: wrap;
 }
+
+/* ===========================================================
+   Animated FAQ
+   Dark island section. Default state: tight stack of question
+   rows in a single rounded card. Open state: clicked item lifts
+   out with an aurora glow behind the header, the answer reveals
+   with a blur-to-sharp text transition, siblings push apart.
+   All movement on one spring-y cubic-bezier so it feels coherent.
+   =========================================================== */
+
+.af-section {
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --t: 460ms;
+    background: #0a0a0c;
+    color: #fff;
+    padding: 120px 24px;
+    margin: 96px 0;
+    border-radius: 24px;
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 18px 18px;
+    background-position: 0 0;
+    position: relative;
+    overflow: hidden;
+}
+.af-section-head {
+    max-width: 720px;
+    margin: 0 auto 56px;
+    text-align: center;
+}
+.af-section-num {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 14px;
+    font-feature-settings: 'tnum';
+}
+.af-section-head h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.af-list {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: gap var(--t) var(--ease);
+}
+.af-list-open {
+    gap: 14px;
+}
+
+.af-item {
+    --bg: rgba(255, 255, 255, 0.04);
+    --bg-open: rgba(255, 255, 255, 0.05);
+    position: relative;
+    background: var(--bg);
+    border-radius: 0;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+        background var(--t) var(--ease),
+        border-radius var(--t) var(--ease),
+        box-shadow var(--t) var(--ease),
+        transform var(--t) var(--ease);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.af-item:first-child { border-top: 0; border-top-left-radius: 16px; border-top-right-radius: 16px; }
+.af-item:last-child  { border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+.af-list-open .af-item {
+    border-radius: 16px !important;
+    border-top: 0;
+    background: var(--bg-open);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 18px 40px -22px rgba(0, 0, 0, 0.7);
+}
+.af-list-open .af-item-open {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Aurora gradient — only renders behind the open item's header. */
+.af-aurora {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--t) var(--ease);
+    background:
+        radial-gradient(140% 90% at 20% 50%, rgba(45, 80, 230, 0.55), transparent 60%),
+        radial-gradient(120% 90% at 70% 60%, rgba(220, 40, 80, 0.5), transparent 60%),
+        radial-gradient(120% 90% at 95% 50%, rgba(240, 130, 40, 0.55), transparent 60%);
+    filter: blur(22px);
+    mask-image: linear-gradient(180deg, #000 0, #000 64px, transparent 64px);
+}
+.af-item-open .af-aurora { opacity: 1; }
+
+.af-row {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 28px 1fr 22px;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15.5px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+}
+.af-icon { color: rgba(255, 255, 255, 0.55); display: inline-flex; }
+.af-q { line-height: 1.3; }
+.af-toggle {
+    color: rgba(255, 255, 255, 0.55);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--t) var(--ease), color var(--t) var(--ease);
+}
+.af-item-open .af-toggle { color: rgba(255, 255, 255, 0.85); transform: rotate(90deg); }
+
+/* Answer reveal: grid-template-rows 0fr -> 1fr animates auto-height.
+   Body blurs in from 8px to 0 for the "comes into focus" effect. */
+.af-answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--t) var(--ease);
+}
+.af-item-open .af-answer-wrap {
+    grid-template-rows: 1fr;
+}
+.af-answer {
+    min-height: 0;
+    overflow: hidden;
+}
+.af-answer p {
+    margin: 0;
+    padding: 4px 22px 22px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14.5px;
+    line-height: 1.55;
+    filter: blur(8px);
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+        filter var(--t) var(--ease),
+        opacity var(--t) var(--ease),
+        transform var(--t) var(--ease);
+}
+.af-item-open .af-answer p {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+    .af-section { padding: 88px 16px; margin: 64px 0; border-radius: 16px; }
+    .af-row { padding: 16px 18px; font-size: 14.5px; }
+    .af-answer p { padding: 4px 18px 18px; font-size: 13.5px; }
+}
