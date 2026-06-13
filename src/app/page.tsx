@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
+import GenFace from './components/GenFace';
 
 /**
  * Landing page — Gensend's story. Heavy emphasis on showing the
@@ -61,8 +62,9 @@ function Nav({ loginHref, signupHref }: { loginHref: string; signupHref: string 
     return (
         <header className="m-nav">
             <div className="m-nav-inner">
-                <Link href="/" className="m-nav-brand" aria-label="Gensend home">
-                    <Image src="/images/logo-full.svg" alt="Gensend" width={120} height={32} priority />
+                <Link href="/" className="m-nav-brand" aria-label="Gensend home" style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+                    <GenFace size={36} />
+                    <Image src="/images/logo-full.svg" alt="Gensend" width={108} height={28} priority />
                 </Link>
                 <nav className="m-nav-links">
                     <a href="#loop">How it works</a>
@@ -161,15 +163,19 @@ function Hero({ signupHref }: { signupHref: string }) {
     return (
         <section className="m-hero">
             <div className="m-hero-inner">
-                <span className="m-pill"><span className="dot" /> Accepting slots for May</span>
-                <h1>Agentic cold email<br />for AI companies</h1>
+                <span className="m-pill"><span className="dot" /> Pay only when GenSend gets you a booked call or a sale</span>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+                    <GenFace size={96} />
+                </div>
+                <h1>The Agent that finds<br />customers and emails them<br />for you.</h1>
                 <p className="m-hero-sub">
-                    Find your perfect customers, write the email, send it, handle the reply.
-                    Gensend does outbound the way a senior operator would, except it remembers
-                    everything and never sleeps.
+                    Tell GenSend who to reach. It scrapes the lead list, writes the email,
+                    sends it from a warmed mailbox, and replies to anyone who's interested.
+                    Run cold outreach like Meta campaigns — set a target outcome and a bid,
+                    pay only when it lands.
                 </p>
                 <div className="m-hero-cta">
-                    <Link href={signupHref} className="m-btn-primary m-btn-lg">Get Started</Link>
+                    <Link href={signupHref} className="m-btn-primary m-btn-lg">Try GenSend free</Link>
                     <div className="m-rating">
                         <span className="m-stars">★★★★★</span>
                         <span className="m-rating-text">Loved by AI founders</span>
@@ -717,9 +723,12 @@ function SecuritySection() {
 function CtaBanner({ signupHref }: { signupHref: string }) {
     return (
         <section className="m-cta-banner">
-            <h2>Stop running cold email by hand.</h2>
-            <p>Spin up your first campaign in 5 minutes. Free to try, no credit card required.</p>
-            <Link href={signupHref} className="m-btn-primary m-btn-lg">Get Started</Link>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+                <GenFace size={64} />
+            </div>
+            <h2>Get a sales team that<br />runs while you sleep.</h2>
+            <p>Set a target. Set a bid. GenSend handles the rest. Only pay when it lands a booked call or sale.</p>
+            <Link href={signupHref} className="m-btn-primary m-btn-lg">Try GenSend free</Link>
         </section>
     );
 }
@@ -734,16 +743,19 @@ function Footer({ signupHref }: { signupHref: string }) {
             <div className="m-footer-inner">
                 <div className="m-footer-cols">
                     <div className="m-footer-brand">
-                        <Image
-                            src="/images/logo-full.svg"
-                            alt="Gensend"
-                            width={120}
-                            height={32}
-                            style={{ filter: 'invert(1)' }}
-                        />
-                        <p className="m-footer-tag">Agentic cold email. Find, write, send, reply.</p>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                            <GenFace size={40} />
+                            <Image
+                                src="/images/logo-full.svg"
+                                alt="Gensend"
+                                width={108}
+                                height={28}
+                                style={{ filter: 'invert(1)' }}
+                            />
+                        </div>
+                        <p className="m-footer-tag">The Agent that finds customers and emails them for you.</p>
                         <Link href={signupHref} className="m-btn-primary" style={{ marginTop: 14 }}>
-                            Get Started
+                            Try GenSend free
                         </Link>
                     </div>
                     <div>
