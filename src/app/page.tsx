@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import GenFace from './components/GenFace';
+import Logo from './components/Logo';
 
 /**
  * Landing page — Gensend's story. Heavy emphasis on showing the
@@ -62,9 +63,8 @@ function Nav({ loginHref, signupHref }: { loginHref: string; signupHref: string 
     return (
         <header className="m-nav">
             <div className="m-nav-inner">
-                <Link href="/" className="m-nav-brand" aria-label="Gensend home" style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-                    <GenFace size={36} />
-                    <Image src="/images/logo-full.svg" alt="Gensend" width={108} height={28} priority />
+                <Link href="/" className="m-nav-brand" aria-label="Gensend home">
+                    <Logo size={36} />
                 </Link>
                 <nav className="m-nav-links">
                     <a href="#loop">How it works</a>
@@ -609,7 +609,7 @@ function OldWay() {
                     <div className="m-old-label">After</div>
                     <div className="m-old-stack m-old-stack-after">
                         <div className="m-old-gensend">
-                            <Image src="/images/logo-full.svg" alt="Gensend" width={140} height={36} />
+                            <Logo size={44} />
                             <span className="m-old-chip-role">find / write / send / reply</span>
                         </div>
                     </div>
@@ -743,16 +743,7 @@ function Footer({ signupHref }: { signupHref: string }) {
             <div className="m-footer-inner">
                 <div className="m-footer-cols">
                     <div className="m-footer-brand">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                            <GenFace size={40} />
-                            <Image
-                                src="/images/logo-full.svg"
-                                alt="Gensend"
-                                width={108}
-                                height={28}
-                                style={{ filter: 'invert(1)' }}
-                            />
-                        </div>
+                        <Logo size={40} color="#ffffff" />
                         <p className="m-footer-tag">The Agent that finds customers and emails them for you.</p>
                         <Link href={signupHref} className="m-btn-primary" style={{ marginTop: 14 }}>
                             Try GenSend free
