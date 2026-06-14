@@ -167,12 +167,12 @@ function Hero({ signupHref }: { signupHref: string }) {
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
                     <GenFace size={96} />
                 </div>
-                <h1>The Agent that finds<br />customers and emails them<br />for you.</h1>
+                <h1>AI lets you build anything.<br />GenSend brings the customers.</h1>
                 <p className="m-hero-sub">
-                    Tell GenSend who to reach. It scrapes the lead list, writes the email,
-                    sends it from a warmed mailbox, and replies to anyone who's interested.
-                    Run cold outreach like Meta campaigns — set a target outcome and a bid,
-                    pay only when it lands.
+                    The distribution engine for builders. Tell GenSend who to reach. It scrapes the
+                    lead list, runs the ads, writes the emails, slides into LinkedIn, and replies to
+                    anyone who's interested. Every channel your buyer lives on, run as one campaign.
+                    Pay only when it lands a booked call or a sale.
                 </p>
                 <div className="m-hero-cta">
                     <Link href={signupHref} className="m-btn-primary m-btn-lg">Try GenSend free</Link>

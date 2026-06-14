@@ -40,7 +40,7 @@ export default function Logo({ size = 40, className = '', color = '#0a0a0a' }: P
                     letterSpacing: '-0.01em',
                 }}
             >
-                Gensend
+                GenSend
             </span>
         </span>
     );
