@@ -14,7 +14,9 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "slot-text": "^0.3.1",
+    "swr": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "^22",
