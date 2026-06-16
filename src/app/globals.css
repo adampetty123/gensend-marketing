@@ -2185,3 +2185,106 @@ h2 { font-size: clamp(34px, 5.2vw, 66px); letter-spacing: -0.045em; line-height:
     .m-self-card:hover .m-self-stat { transform: none !important; }
     .m-loop-tabs:hover .m-loop-tab:not(:hover):not(.is-active) { opacity: 1; }
 }
+
+/* ====================================================================
+   MOTION CRAFT pass 2 — deeper reveals, real crossfades, perceptible hover,
+   micro-life inside the loop. Tasteful, all reduced-motion gated.
+   ==================================================================== */
+
+/* Deeper, more present reveal travel. */
+.gs-reveal { transform: translateY(30px); transition: opacity 680ms var(--ease-signature), transform 680ms var(--ease-signature); }
+
+/* Loop stages crossfade (was a near-hard cut) — 420ms opacity + 12px shift. */
+.m-loop-stage-panel { transform: translateY(12px); transition: opacity 420ms var(--ease-signature), transform 420ms var(--ease-signature); }
+.m-loop-stage-panel.is-active { transform: translateY(0); }
+
+/* Perceptible hover lift (1px -> 3px) with matching shadow. */
+.m-btn-primary:hover, .m-btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -14px rgba(255, 0, 149, 0.5); }
+.m-card, .m-feature, .m-story, .m-pricing-card, .pp-card { transition: transform 220ms var(--ease-ui), box-shadow 220ms var(--ease-ui); }
+.m-card:hover, .m-feature:hover, .m-story:hover, .m-pricing-card:hover, .pp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px -22px rgba(0, 0, 0, 0.22);
+}
+
+/* Micro-life inside the loop: leads rows stagger-fade as the FIND stage shows. */
+@keyframes gsRowIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.m-loop-table .m-demo-table-row.is-visible { animation: gsRowIn 520ms var(--ease-signature) both; }
+.m-loop-table .m-demo-table-row:nth-child(2) { animation-delay: 60ms; }
+.m-loop-table .m-demo-table-row:nth-child(3) { animation-delay: 140ms; }
+.m-loop-table .m-demo-table-row:nth-child(4) { animation-delay: 220ms; }
+.m-loop-table .m-demo-table-row:nth-child(5) { animation-delay: 300ms; }
+
+/* Active stage badge gently pulses — feels "live". */
+@keyframes gsPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.m-loop-tab.is-active .m-loop-tab-badge { animation: gsPulse 1.8s var(--ease-ui) infinite; transform-origin: left center; }
+
+/* Blinking caret on the loop's WRITE email — looks like it's being typed. */
+@keyframes gsCaret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.m-loop-email .m-demo-email-body::after {
+    content: "▍"; color: #ff0095; margin-left: 1px;
+    animation: gsCaret 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .m-loop-table .m-demo-table-row.is-visible { animation: none; }
+    .m-loop-tab.is-active .m-loop-tab-badge { animation: none; transform: none; }
+    .m-loop-email .m-demo-email-body::after { animation: none; opacity: 0; }
+    .m-card:hover, .m-feature:hover, .m-story:hover, .m-pricing-card:hover, .pp-card:hover { transform: none; }
+    .m-loop-stage-panel { transition: none; transform: none; }
+}
+
+/* ====================================================================
+   MOTION pass 3 — every loop stage DEMONSTRATES the agent working, and the
+   motion REPLAYS each time a stage becomes active (scoped to .is-active).
+   ==================================================================== */
+@keyframes gsRowIn  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes gsConfirm{ from { opacity: 0; transform: translateY(6px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+/* BRIEF (stage 1): the brief lands, then the agent "thinks" and replies. */
+.m-loop-stage-panel.is-active .m-loop-visual-chat .m-chat-bubble { animation: gsRowIn 460ms var(--ease-signature) both; }
+.m-loop-stage-panel.is-active .m-loop-visual-chat .m-chat-bubble-ai { animation-delay: 260ms; }
+
+/* FIND (stage 2): leads populate the table row by row (systematic stagger). */
+.m-loop-stage-panel.is-active .m-loop-table .m-demo-table-row.is-visible { animation: gsRowIn 460ms var(--ease-signature) both; }
+.m-loop-stage-panel.is-active .m-loop-table .m-demo-table-row:nth-child(2) { animation-delay: 75ms; }
+.m-loop-stage-panel.is-active .m-loop-table .m-demo-table-row:nth-child(3) { animation-delay: 150ms; }
+.m-loop-stage-panel.is-active .m-loop-table .m-demo-table-row:nth-child(4) { animation-delay: 225ms; }
+.m-loop-stage-panel.is-active .m-loop-table .m-demo-table-row:nth-child(5) { animation-delay: 300ms; }
+
+/* WRITE (stage 3): the draft fades in line-feel + a typing caret. */
+.m-loop-stage-panel.is-active .m-loop-email { animation: gsRowIn 460ms var(--ease-signature) both; }
+.m-loop-email .m-demo-email-body::after { content: "▍"; color: #ff0095; margin-left: 1px; animation: gsCaret 1s steps(1) infinite; }
+@keyframes gsCaret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+/* SEND + REPLY (stage 4): replies arrive one by one, then each triage ACTION
+   materializes — the agent visibly classifying + queuing the next step. */
+.m-loop-stage-panel.is-active .m-loop-replies .m-reply-row { animation: gsRowIn 460ms var(--ease-signature) both; }
+.m-loop-stage-panel.is-active .m-loop-replies .m-reply-row:nth-child(2) { animation-delay: 110ms; }
+.m-loop-stage-panel.is-active .m-loop-replies .m-reply-row:nth-child(3) { animation-delay: 220ms; }
+.m-loop-stage-panel.is-active .m-reply-action { animation: gsConfirm 520ms var(--ease-signature) both; animation-delay: 360ms; }
+.m-loop-stage-panel.is-active .m-loop-replies .m-reply-row:nth-child(2) .m-reply-action { animation-delay: 470ms; }
+.m-loop-stage-panel.is-active .m-loop-replies .m-reply-row:nth-child(3) .m-reply-action { animation-delay: 580ms; }
+
+@media (prefers-reduced-motion: reduce) {
+    .m-loop-stage-panel.is-active .m-chat-bubble,
+    .m-loop-stage-panel.is-active .m-demo-table-row,
+    .m-loop-stage-panel.is-active .m-loop-email,
+    .m-loop-stage-panel.is-active .m-reply-row,
+    .m-loop-stage-panel.is-active .m-reply-action { animation: none !important; }
+    .m-loop-email .m-demo-email-body::after { animation: none; opacity: 0; }
+}
+
+/* ====================================================================
+   PRODUCTION polish — contrast (AA), descender safety, font fallback.
+   ==================================================================== */
+/* Bump muted text to comfortable AA on cream (#fafafa): ~5.9:1. */
+.m-section-head p { color: rgba(0, 0, 0, 0.62); }
+.m-hero-sub { color: rgba(255, 255, 255, 0.72); } /* ~8:1 on #0a0a0a */
+/* Descender safety for the big serif at tight line-height. */
+h1 { line-height: 1.0; padding-bottom: 0.04em; }
+/* Explicit fallback stack already paired with next/font display:swap. */
+h1, h2, h3 { font-family: var(--font-serif), 'F37 Zagma Serif', 'Tiempos Headline', Georgia, 'Times New Roman', serif; }
+/* Keyboard focus visibility for a11y. */
+a:focus-visible, button:focus-visible, .m-btn-primary:focus-visible, .m-btn-secondary:focus-visible, .m-btn-ghost:focus-visible {
+    outline: 2px solid #ff0095; outline-offset: 2px; border-radius: 6px;
+}
