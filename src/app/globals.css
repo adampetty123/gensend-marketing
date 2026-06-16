@@ -2010,3 +2010,99 @@ a { color: inherit; text-decoration: none; }
     .m-self-examples, .m-faq-answer-wrap { transition: none; }
     .m-self-stat { transition: none !important; }
 }
+
+/* ====================================================================
+   /pricing page — namespaced pp-* classes (2026 pricing rebuild)
+   ==================================================================== */
+.pp-hero { max-width: 880px; margin: 0 auto; padding: 96px 24px 24px; text-align: center; }
+.pp-eyebrow { display: inline-block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #ff0095; margin-bottom: 14px; }
+.pp-hero h1 { font-size: clamp(40px, 6vw, 72px); }
+.pp-signature { color: #ff0095; font-size: clamp(18px, 2.4vw, 24px); margin-top: 10px; letter-spacing: -0.02em; }
+.pp-subhead { color: #555; font-size: 17px; margin-top: 14px; }
+.pp-outcome-bar { margin: 28px auto 0; display: inline-block; background: #f1f1f1; border-radius: 50px; padding: 9px 20px; font-size: 13.5px; color: #333; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04); }
+
+.pp-section { max-width: 1120px; margin: 0 auto; padding: 0 24px; margin-top: 120px; }
+.pp-section-head { max-width: 760px; margin: 0 auto 40px; text-align: center; }
+.pp-section-head h2 { font-size: clamp(30px, 4vw, 48px); }
+.pp-section-head p { color: #555; font-size: 16px; margin-top: 12px; line-height: 1.6; }
+
+.pp-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+.pp-card { position: relative; display: flex; flex-direction: column; background: #fff; border-radius: 18px; padding: 24px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.07); min-height: 100%; }
+.pp-card-pro { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.07); border-left: 2px solid #ff0095; transform: translateZ(0); box-shadow: 0 18px 50px -28px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,0,149,0.12); }
+.pp-card-pro:hover { transform: translateY(-4px); transition: transform 150ms var(--ease-ui); }
+@media (hover: none) { .pp-card-pro:hover { transform: none; } }
+.pp-card-reveal { opacity: 0; animation: pp-rise 300ms var(--ease-signature) forwards; }
+@keyframes pp-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.pp-badge { position: absolute; top: 16px; right: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #ff0095; background: rgba(255,0,149,0.1); padding: 3px 8px; border-radius: 50px; }
+.pp-card-name { font-size: 20px; }
+.pp-price { display: flex; align-items: baseline; gap: 6px; margin-top: 12px; }
+.pp-amount { font-size: 44px; letter-spacing: -0.04em; color: #141414; }
+.pp-period { font-size: 14px; color: #6b6b6b; }
+.pp-tagline { margin-top: 10px; font-size: 14.5px; color: #141414; }
+.pp-outcome { font-size: 13px; color: #ff0095; margin-top: 4px; }
+.pp-includes { list-style: none; padding: 0; margin: 20px 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pp-includes li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: #333; line-height: 1.4; }
+.pp-includes li.pp-includes-sub { color: #8a8a8a; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+.pp-check { flex-shrink: 0; margin-top: 2px; }
+.pp-card-cta { margin-top: auto; }
+.pp-reassure { text-align: center; font-size: 12px; color: #8a8a8a; margin-top: 8px; }
+
+.pp-dfy { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #0a0a0a; color: #fff; border-radius: 20px; padding: 40px; }
+.pp-dfy-text h2 { color: #fff; font-size: clamp(26px, 3vw, 36px); }
+.pp-dfy-text p { color: #b8b8b8; font-size: 15px; margin-top: 12px; max-width: 620px; line-height: 1.6; }
+.pp-dfy-cta { flex-shrink: 0; }
+
+.pp-compare-wrap { overflow: hidden; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; }
+.pp-compare { width: 100%; border-collapse: collapse; font-size: 14px; }
+.pp-compare th, .pp-compare td { padding: 14px 16px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.06); }
+.pp-compare thead th { font-weight: 600; color: #141414; }
+.pp-compare th[scope="row"], .pp-compare .pp-cap { text-align: left; width: 40%; font-weight: 400; color: #333; }
+.pp-compare tbody tr:nth-child(odd) td, .pp-compare tbody tr:nth-child(odd) th[scope="row"] { background: rgba(0,0,0,0.015); }
+.pp-compare tbody tr:hover td, .pp-compare tbody tr:hover th[scope="row"] { background: rgba(0,0,0,0.04); transition: background 120ms var(--ease-ui); }
+.pp-col-gen { background: rgba(255,0,149,0.04) !important; }
+.pp-yes { color: #16a34a; font-size: 16px; }
+.pp-no { color: #c0c0c0; font-size: 16px; }
+.pp-partial { color: #d08700; font-size: 16px; }
+.pp-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.pp-compare-foot { font-size: 12px; color: #8a8a8a; margin-top: 14px; text-align: center; }
+.pp-compare-stack { display: none; }
+
+.pp-faq { max-width: 720px; margin: 0 auto; }
+.pp-faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.pp-faq-row { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 4px; background: none; border: none; cursor: pointer; text-align: left; font-family: inherit; }
+.pp-faq-q { font-size: 16.5px; color: #141414; }
+.pp-faq-chevron { font-size: 18px; color: #ff0095; transition: transform 180ms var(--ease-ui); }
+.pp-faq-item.is-open .pp-faq-chevron { transform: rotate(180deg); }
+.pp-faq-answer-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 250ms var(--ease-ui); }
+.pp-faq-item.is-open .pp-faq-answer-wrap { grid-template-rows: 1fr; }
+.pp-faq-answer { overflow: hidden; }
+.pp-faq-answer p { padding: 0 4px 20px; font-size: 14.5px; color: #555; line-height: 1.65; }
+
+.pp-closing { max-width: 760px; margin: 120px auto 0; text-align: center; padding: 96px 24px; }
+.pp-closing h2 { font-size: clamp(30px, 4.5vw, 52px); }
+.pp-closing p { color: #555; font-size: 16px; margin: 14px 0 26px; }
+
+@media (max-width: 768px) {
+    .pp-section, .pp-closing { margin-top: 72px; }
+    .pp-plans { grid-template-columns: 1fr; }
+    .pp-dfy { flex-direction: column; align-items: flex-start; padding: 28px; }
+    .pp-compare-wrap { display: none; }
+    .pp-compare-stack { display: block; display: flex; flex-direction: column; gap: 12px; }
+    .pp-compare-card { border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 14px 16px; }
+    .pp-compare-card-cap { font-size: 15px; color: #141414; margin-bottom: 10px; }
+    .pp-compare-card-cells { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .pp-compare-card-cell { display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #555; background: rgba(0,0,0,0.02); border-radius: 8px; padding: 6px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pp-card-reveal { animation: none !important; opacity: 1 !important; }
+    .pp-card-pro:hover { transform: none !important; }
+    .pp-compare tbody tr:hover td { transition: none; }
+    .pp-faq-answer-wrap { transition: none; }
+    .pp-faq-chevron { transition: none; }
+}
+
+/* Homepage pricing → done-for-you strip (reconciled pricing section) */
+.m-pricing-dfy { max-width: 980px; margin: 18px auto 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #0a0a0a; border-radius: 18px; padding: 26px 28px; }
+.m-pricing-dfy .m-pricing-reassure { margin-top: 6px; color: #b8b8b8; max-width: 560px; }
+@media (max-width: 860px) { .m-pricing-dfy { flex-direction: column; align-items: flex-start; } }

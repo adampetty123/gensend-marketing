@@ -11,8 +11,8 @@ import Logo from './components/Logo';
 /**
  * gensend.ai homepage. Copy/positioning rebuilt per the CEO brief:
  *   - Sell "an agent that operates itself" vs "tools you operate".
- *   - Honest pricing everywhere: $99/mo base ALWAYS applies, plus a bid you
- *     set per delivered result. Never "only pay when it works".
+ *   - Honest pricing everywhere: self-serve is Free $0 / Pro $20 per workspace
+ *     (matches Stripe). Performance / "pay per result" is done-for-you only.
  *   - Strongest proof is the live "GenSend selling GenSend" self-campaign card,
  *     fed by a real, PII-stripped, flag-gated backend endpoint.
  *   - Every number real or it doesn't render. No invented case study/benchmark.
@@ -152,7 +152,7 @@ function Nav({ loginHref, signupHref }: { loginHref: string; signupHref: string 
                 </nav>
                 <div className="m-nav-cta">
                     <Link href={loginHref} className="m-btn-ghost">Login</Link>
-                    <Link href={signupHref} className="m-btn-primary"><CtaLabel rest="Start your free trial" hover="14 days, no card" /></Link>
+                    <Link href={signupHref} className="m-btn-primary"><CtaLabel rest="Start free" hover="Zero friction. Zero cost." /></Link>
                 </div>
             </div>
         </header>
@@ -173,7 +173,7 @@ function StickyBar({ signupHref }: { signupHref: string }) {
             <div className="m-stickybar-inner">
                 <Link href="/" className="m-nav-brand" aria-label="GenSend home"><Logo size={30} /></Link>
                 <Link href={signupHref} className="m-btn-primary" tabIndex={show ? 0 : -1}>
-                    <CtaLabel rest="Start your free trial" hover="14 days, no card" active="Opening…" />
+                    <CtaLabel rest="Start free" hover="Zero friction. Zero cost." active="Opening…" />
                 </Link>
             </div>
         </div>
@@ -188,24 +188,23 @@ function Hero({ signupHref }: { signupHref: string }) {
     return (
         <section className="m-hero">
             <div className="m-hero-inner">
-                <span className="m-pill"><span className="dot" /> $99/mo base — plus you set the price per result</span>
+                <span className="m-pill"><span className="dot" /> Start free · Pro is $20/mo per workspace</span>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
                     <GenFace size={96} />
                 </div>
-                <h1>Your outbound team is now one agent.<br />$99/mo base — plus you set the price per result.</h1>
+                <h1>Your outbound team is now one agent.</h1>
                 <p className="m-hero-sub">
                     Brief GenSend like a new SDR — &ldquo;book me calls with founders of YC S26 AI infra
                     startups.&rdquo; It finds the leads, writes in your voice, sends from warmed mailboxes,
-                    and handles every reply. On top of the base, you set a bid and pay it only when it
-                    books a call or closes a sale.
+                    and handles every reply. Start free; Pro is $20/mo per workspace.
                 </p>
                 <div className="m-hero-cta">
                     <Link href={signupHref} className="m-btn-primary m-btn-lg">
-                        <CtaLabel rest="Start your free trial" hover="14 days, no card" active="Opening…" />
+                        <CtaLabel rest="Start free" hover="Zero friction. Zero cost." active="Opening…" />
                     </Link>
                     <a href="#self-demo" className="m-hero-secondary">
                         Watch it sell itself, live ↓
-                        <span className="m-hero-secondary-sub">14-day free trial. No card. Connect a mailbox in 2 minutes.</span>
+                        <span className="m-hero-secondary-sub">Free to start. No card. Connect a mailbox in 2 minutes.</span>
                     </a>
                 </div>
                 <HeroDemo />
@@ -553,7 +552,7 @@ Adam`}</pre>
                 </div>
             </div>
             <div className="m-section-foot">
-                <Link href={signupHref} className="m-btn-primary"><CtaLabel rest="Run your own brief" hover="14 days, no card" /></Link>
+                <Link href={signupHref} className="m-btn-primary"><CtaLabel rest="Run your own brief" hover="Zero friction. Zero cost." /></Link>
             </div>
         </section>
     );
@@ -591,7 +590,7 @@ function ToolVsEmployee() {
                         <li>agent writes / sends / rotates mailboxes</li>
                         <li>agent triages replies, you approve what matters</li>
                     </ul>
-                    <div className="m-old-total m-old-total-after">~20 min/week. One agent. $99/mo base + performance.</div>
+                    <div className="m-old-total m-old-total-after">~20 min/week. One agent. From $20/mo per workspace.</div>
                 </div>
             </div>
         </section>
@@ -607,36 +606,42 @@ function Pricing({ signupHref }: { signupHref: string }) {
         <section className="m-section" id="pricing">
             <div className="m-section-head">
                 <span className="m-section-num">[04]</span>
-                <h2>A flat base, plus you pay for results.</h2>
-                <p>$99/mo base covers the platform — connected mailboxes, warmup, unlimited campaigns, billed monthly. On top, you set a bid per outcome and pay it only when GenSend confirms it: a booked call (positive reply + meeting on your calendar) or a closed sale (you mark it won). You choose which outcome and how much.</p>
+                <h2>Start free. Go Pro at $20.</h2>
+                <p>Per workspace, billed monthly — and you can run as many workspaces as you like. Free to try the agent; Pro when you want it running at volume.</p>
             </div>
             <div className="m-pricing">
                 <div className="m-pricing-card">
                     <div className="m-pricing-base">
-                        <span className="m-pricing-amount">$99</span>
-                        <span className="m-pricing-per">/mo base</span>
+                        <span className="m-pricing-amount">$0</span>
+                        <span className="m-pricing-per">/mo · Free</span>
                     </div>
-                    <p className="m-pricing-desc">Platform, connected mailboxes, warmup, unlimited campaigns. Billed monthly — applies every month regardless of results.</p>
-                    <div className="m-pricing-plus">+ a bid you set per result</div>
-                    <ul className="m-pricing-list">
-                        <li>Booked call — positive reply + meeting on your calendar</li>
-                        <li>Closed sale — you mark it won</li>
-                        <li>You pick which outcome, and the bid amount</li>
-                    </ul>
-                    <Link href={signupHref} className="m-btn-primary m-btn-lg" style={{ width: '100%' }}>
-                        <CtaLabel rest="Start your free trial" hover="14 days, no card" active="Opening…" />
+                    <p className="m-pricing-desc">Meet the agent. 1 campaign, 5 emails a day, every lead source, agent writes and triages. Unlimited workspaces.</p>
+                    <Link href={signupHref} className="m-btn-secondary m-btn-lg" style={{ width: '100%' }}>
+                        <CtaLabel rest="Start free" hover="Zero friction. Zero cost." active="Opening…" />
                     </Link>
-                    <p className="m-pricing-trial">14 days free. No credit card.</p>
                 </div>
-                <div className="m-pricing-callout">
-                    <div className="m-pricing-callout-h">Set a $40 bid per booked call</div>
-                    <ul className="m-pricing-math">
-                        <li><span>Book 3</span><span className="m-pricing-eq">$99 + $120 = <strong>$219</strong></span></li>
-                        <li><span>Book 10</span><span className="m-pricing-eq">$99 + $400 = <strong>$499</strong></span></li>
-                        <li><span>Book zero</span><span className="m-pricing-eq">you pay the <strong>$99</strong> base</span></li>
-                    </ul>
-                    <p className="m-pricing-reassure">You set the bid and cap the spend. Beyond the base, you never pay for an email that didn&apos;t produce the outcome you chose.</p>
+                <div className="m-pricing-card">
+                    <div className="m-pricing-plus" style={{ marginTop: 0 }}>Most popular</div>
+                    <div className="m-pricing-base">
+                        <span className="m-pricing-amount">$20</span>
+                        <span className="m-pricing-per">/mo per workspace</span>
+                    </div>
+                    <p className="m-pricing-desc">Infrastructure gone, volume on. Domains and mailboxes provisioned for you, unlimited campaigns, unlimited sends with safety caps, self-healing deliverability.</p>
+                    <Link href={signupHref} className="m-btn-primary m-btn-lg" style={{ width: '100%' }}>
+                        <CtaLabel rest="Upgrade workspace" hover="$20/mo, cancel anytime" active="Opening…" />
+                    </Link>
+                    <p className="m-pricing-trial">Per workspace. Cancel anytime.</p>
                 </div>
+            </div>
+            <div className="m-pricing-dfy">
+                <div>
+                    <div className="m-pricing-callout-h" style={{ color: '#fff' }}>Don&apos;t want to run it? We do.</div>
+                    <p className="m-pricing-reassure">Our team runs the whole program for you — priced on outcomes (booked calls or closed sales), agreed up front. A managed engagement, not a plan.</p>
+                </div>
+                <a href="mailto:adam@gensend.ai?subject=GenSend%20done-for-you" className="m-btn-primary"><CtaLabel rest="Talk to us about done-for-you" /></a>
+            </div>
+            <div className="m-section-foot">
+                <Link href="/pricing" className="m-btn-ghost">See full pricing &amp; comparison →</Link>
             </div>
         </section>
     );
@@ -700,8 +705,8 @@ function SecuritySection() {
 function Faq() {
     const items = [
         { q: 'How is this different from Instantly or Apollo?', a: 'Those are tools you operate — you still build the list, write the copy, work the replies. GenSend is an agent that does the whole loop from one brief. Different category.' },
-        { q: 'What does it cost?', a: '$99/mo base (mailboxes, warmup, unlimited campaigns), billed monthly. Plus a bid you set per outcome — e.g. $40 per booked call — charged only when confirmed. Book nothing, still pay the $99 base.' },
-        { q: 'Is there a free trial?', a: 'Yes — 14 days, no credit card. Connect a mailbox and run a real campaign before you pay.' },
+        { q: 'What does it cost?', a: 'Free is $0/mo per workspace — 1 campaign, 5 emails a day. Pro is $20/mo per workspace and removes the ceilings: unlimited campaigns, unlimited daily sends with safety caps, and sending infrastructure provisioned for you. Run as many workspaces as you like, each billed separately.' },
+        { q: 'Is there a free plan?', a: 'Yes — Free is $0/mo, no credit card. Connect a mailbox and run a real campaign before you ever pay. Upgrade to Pro when you want it at volume.' },
         { q: 'Will this hurt my domain?', a: 'No. Per-mailbox warmup + send caps, bounce monitoring, auto-pause before damage.' },
         { q: 'Do you store my email password?', a: 'Never. OAuth to Google/Outlook, no passwords, disconnect anytime.' },
     ];
@@ -738,10 +743,10 @@ function ClosingCta({ signupHref }: { signupHref: string }) {
     return (
         <section className="m-cta-banner">
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}><GenFace size={64} /></div>
-            <h2>Hire the agent.<br />Set the price per result.</h2>
-            <p>$99/mo base, plus a bid you set per booked call or closed sale. Brief it once; it finds, writes, sends, and replies.</p>
+            <h2>Hire the agent.<br />Start free, scale on Pro.</h2>
+            <p>Free to start. Pro is $20/mo per workspace. Brief it once; it finds, writes, sends, and replies.</p>
             <Link href={signupHref} className="m-btn-primary m-btn-lg">
-                <CtaLabel rest="Start your free trial" hover="14 days, no card" active="Opening…" />
+                <CtaLabel rest="Start free" hover="Zero friction. Zero cost." active="Opening…" />
             </Link>
         </section>
     );
@@ -755,7 +760,7 @@ function Footer({ signupHref }: { signupHref: string }) {
                     <div className="m-footer-brand">
                         <Logo size={40} color="#ffffff" />
                         <p className="m-footer-tag">Your outbound team is now one agent.</p>
-                        <Link href={signupHref} className="m-btn-primary" style={{ marginTop: 14 }}><CtaLabel rest="Start your free trial" hover="14 days, no card" /></Link>
+                        <Link href={signupHref} className="m-btn-primary" style={{ marginTop: 14 }}><CtaLabel rest="Start free" hover="Zero friction. Zero cost." /></Link>
                     </div>
                     <div><div className="m-footer-h">Product</div><a href="#loop">How it works</a><a href="#pricing">Pricing</a><a href="#features">Features</a></div>
                     <div><div className="m-footer-h">Resources</div><Link href="/blog">Blog</Link><a href="#faq">FAQ</a><a href="mailto:adam@gensend.ai">Talk to us</a></div>
