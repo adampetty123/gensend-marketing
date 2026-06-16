@@ -580,6 +580,11 @@ Adam`}</pre>
                     ))}
                 </div>
                 <div className="m-loop-stage">
+                    {/* Live stage indicator — slot-text rolls the label as the
+                        loop auto-advances (house standard: animate changing labels). */}
+                    <div className="m-loop-now" aria-live="polite">
+                        <span className="m-loop-now-dot" /> Now: <SlotText text={stages[active].badge} />
+                    </div>
                     {stages.map((s, i) => (
                         <div key={s.key} className={`m-loop-stage-panel ${i === active ? 'is-active' : ''}`}>{s.visual}</div>
                     ))}

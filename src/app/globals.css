@@ -2288,3 +2288,15 @@ h1, h2, h3 { font-family: var(--font-serif), 'F37 Zagma Serif', 'Tiempos Headlin
 a:focus-visible, button:focus-visible, .m-btn-primary:focus-visible, .m-btn-secondary:focus-visible, .m-btn-ghost:focus-visible {
     outline: 2px solid #ff0095; outline-offset: 2px; border-radius: 6px;
 }
+
+/* Live stage indicator (slot-text rolls the active loop stage label). */
+.m-loop-now {
+    position: absolute; top: 14px; right: 16px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: rgba(0,0,0,0.45);
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(4px);
+    padding: 4px 10px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+.m-loop-now-dot { width: 6px; height: 6px; border-radius: 50%; background: #ff0095; box-shadow: 0 0 6px #ff0095; animation: gsPulse 1.8s var(--ease-ui) infinite; }
+@media (prefers-reduced-motion: reduce) { .m-loop-now-dot { animation: none; } }
