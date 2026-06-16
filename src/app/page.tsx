@@ -384,7 +384,7 @@ function SelfLiveCard({ data, stale }: { data: SelfResp; stale: boolean }) {
 
     return (
         <>
-            <div className={`m-self-card ${inView ? 'is-revealed' : ''}`} ref={ref}>
+            <div className={`m-self-card m-self-card-reveal ${inView ? 'is-revealed' : ''}`} ref={ref}>
                 <div className="m-self-stats">
                     <Stat label="Founders briefed" value={s.leads_briefed} run={inView} delay={0} />
                     <Stat label="Emails sent" value={s.emails_sent} run={inView} delay={60} />

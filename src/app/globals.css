@@ -1920,10 +1920,11 @@ a { color: inherit; text-decoration: none; }
     background: #fff; border-radius: 20px;
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06), 0 24px 60px -32px rgba(0,0,0,0.25);
     padding: 36px 32px;
-    transform: scale(0.97); opacity: 0.001;
-    transition: transform 300ms var(--ease-signature), opacity 300ms var(--ease-signature);
 }
-.m-self-card.is-revealed { transform: scale(1); opacity: 1; }
+/* Signature reveal applies ONLY to the live stat card (first load). Static,
+   fallback, and skeleton cards must always be visible. */
+.m-self-card-reveal { transform: scale(0.97); opacity: 0.001; transition: transform 300ms var(--ease-signature), opacity 300ms var(--ease-signature); }
+.m-self-card-reveal.is-revealed { transform: scale(1); opacity: 1; }
 .m-self-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .m-self-stat {
     display: flex; flex-direction: column; gap: 6px; text-align: center;
@@ -2003,7 +2004,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ----- prefers-reduced-motion ----- */
 @media (prefers-reduced-motion: reduce) {
-    .m-self-card { transform: none !important; opacity: 1 !important; transition: none !important; }
+    .m-self-card-reveal { transform: none !important; opacity: 1 !important; transition: none !important; }
     .m-skeleton, .m-skeleton-sm { animation: none; }
     .m-stickybar { transition: opacity 1ms linear; }
     .m-self-examples, .m-faq-answer-wrap { transition: none; }

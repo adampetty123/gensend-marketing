@@ -11,6 +11,7 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "next": "16.1.1",
+    "playwright-core": "^1.61.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remark": "^15.0.1",
