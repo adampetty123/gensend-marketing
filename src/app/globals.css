@@ -2106,3 +2106,82 @@ a { color: inherit; text-decoration: none; }
 .m-pricing-dfy { max-width: 980px; margin: 18px auto 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #0a0a0a; border-radius: 18px; padding: 26px 28px; }
 .m-pricing-dfy .m-pricing-reassure { margin-top: 6px; color: #b8b8b8; max-width: 560px; }
 @media (max-width: 860px) { .m-pricing-dfy { flex-direction: column; align-items: flex-start; } }
+
+/* ====================================================================
+   PREMIUM VISUAL PASS (2026) — Poolside scale + restraint, Riffle-alive
+   loop, pink-only accent, expensive easing. Aesthetic only; copy/structure/
+   pricing unchanged. Appended last so it layers over the base styles.
+   ==================================================================== */
+
+/* ---- Type scale IS the design system: bigger, tighter hero + heads ---- */
+h1 { font-size: clamp(54px, 8.6vw, 116px); letter-spacing: -0.055em; line-height: 0.97; }
+h2 { font-size: clamp(34px, 5.2vw, 66px); letter-spacing: -0.045em; line-height: 1.02; }
+.m-hero h1 { max-width: 16ch; }
+
+/* ---- Dark, premium hero (Poolside). Light nav above it stays clean. ---- */
+.m-hero {
+    background:
+        radial-gradient(115% 80% at 50% -8%, rgba(255, 0, 149, 0.12), transparent 58%),
+        #0a0a0a;
+    color: #fff;
+    padding: clamp(76px, 9vw, 132px) 24px clamp(84px, 9vw, 124px);
+}
+.m-hero h1 { color: #fff; }
+.m-hero-sub { color: rgba(255, 255, 255, 0.62); font-size: clamp(17px, 1.5vw, 20px); max-width: 600px; }
+.m-hero .m-pill {
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.86);
+}
+.m-hero-secondary { color: rgba(255, 255, 255, 0.9); }
+.m-hero-secondary:hover { color: #fff; }
+.m-hero-secondary-sub { color: rgba(255, 255, 255, 0.45); }
+/* The live product window floats as a bright product shot on the dark hero. */
+.m-hero .m-demo { margin-top: clamp(40px, 5vw, 72px); }
+.m-hero .m-demo-window {
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.06),
+        0 40px 120px -40px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 30px 90px -50px rgba(255, 0, 149, 0.4);
+}
+
+/* ---- Whitespace as luxury: let every section breathe ---- */
+.m-section { padding: clamp(96px, 11vw, 168px) 24px; }
+.m-section-head { max-width: 820px; margin: 0 auto clamp(48px, 6vw, 84px); gap: 18px; }
+.m-section-head p { font-size: clamp(16px, 1.3vw, 18px); color: rgba(0, 0, 0, 0.55); line-height: 1.6; }
+.m-section-num { letter-spacing: 0.14em; opacity: 0.7; }
+.m-section-foot { margin-top: clamp(48px, 6vw, 72px); }
+
+/* ---- Scroll-triggered reveals (Riffle), expensive expo-out easing ---- */
+.gs-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 620ms var(--ease-signature), transform 620ms var(--ease-signature);
+    will-change: opacity, transform;
+}
+.gs-reveal.gs-in { opacity: 1; transform: none; }
+
+/* ---- The 4-stage loop, alive (Riffle): hover focuses, others recede ---- */
+.m-loop-tab { transition: border-color 220ms var(--ease-ui), box-shadow 220ms var(--ease-ui), transform 220ms var(--ease-ui), opacity 220ms var(--ease-ui); }
+.m-loop-tabs:hover .m-loop-tab:not(:hover):not(.is-active) { opacity: 0.5; }
+.m-loop-tab:hover { transform: translateY(-1px); border-color: rgba(255, 0, 149, 0.3); }
+.m-loop-tab.is-active {
+    border-color: rgba(255, 0, 149, 0.4);
+    box-shadow: 0 0 0 4px rgba(255, 0, 149, 0.08), 0 18px 40px -24px rgba(255, 0, 149, 0.4);
+}
+.m-loop-tab-badge { transition: transform 220ms var(--ease-signature); }
+.m-loop-tab.is-active .m-loop-tab-badge { transform: scale(1.04); }
+
+/* ---- Tasteful hover lift on interactive cards/buttons ---- */
+.m-btn-primary:hover, .m-btn-secondary:hover { transform: translateY(-1px); }
+.m-self-stat { transition: transform 220ms var(--ease-ui); }
+.m-self-card:hover .m-self-stat { transform: translateY(-2px); }
+
+/* ---- prefers-reduced-motion: instant, no transforms ---- */
+@media (prefers-reduced-motion: reduce) {
+    .gs-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .m-loop-tab, .m-loop-tab:hover, .m-btn-primary:hover, .m-btn-secondary:hover,
+    .m-self-card:hover .m-self-stat { transform: none !important; }
+    .m-loop-tabs:hover .m-loop-tab:not(:hover):not(.is-active) { opacity: 1; }
+}

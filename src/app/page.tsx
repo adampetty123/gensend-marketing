@@ -117,6 +117,40 @@ export default function Landing() {
         } catch {}
     }, []);
 
+    // Scroll-triggered reveal (intersection-observer). Above-fold elements show
+    // instantly (no flash); below-fold fade + rise with a small per-group
+    // stagger. Fully disabled under prefers-reduced-motion.
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const sels = [
+            '.m-section-head', '.m-loop-tab', '.m-card', '.m-pricing-card',
+            '.m-pricing-callout', '.m-pricing-dfy', '.m-self-card', '.m-self-example',
+            '.m-security-item', '.m-faq-item', '.m-old-side', '.m-feature', '.m-story',
+        ].join(',');
+        const els = Array.from(document.querySelectorAll<HTMLElement>(sels));
+        const groupCount = new Map<Element, number>();
+        const io = new IntersectionObserver((entries) => {
+            for (const e of entries) {
+                if (e.isIntersecting) { e.target.classList.add('gs-in'); io.unobserve(e.target); }
+            }
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        for (const el of els) {
+            const parent = el.parentElement ?? document.body;
+            const i = groupCount.get(parent) ?? 0;
+            groupCount.set(parent, i + 1);
+            el.style.transitionDelay = `${Math.min(i, 5) * 55}ms`;
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight * 0.92) {
+                el.classList.add('gs-reveal', 'gs-in'); // already in view → no flash
+            } else {
+                el.classList.add('gs-reveal');
+                io.observe(el);
+            }
+        }
+        return () => io.disconnect();
+    }, []);
+
     return (
         <>
             <Nav loginHref={loginHref} signupHref={signupHref} />
